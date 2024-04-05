@@ -10,11 +10,19 @@ def comparing(file1_path, file2_path, same_path, diff_path):
 
     # Запис спільних рядків у файл "same.txt"
     with open(same_path, 'w', encoding='utf-8') as same_file:
-        for line in same_lines:
+        for line in sorted(same_lines):
             same_file.write(line + '\n')
 
     # Запис унікальних рядків у файл "diff.txt"
     with open(diff_path, 'w', encoding='utf-8') as diff_file:
-        for line in diff_lines:
+        for line in sorted(diff_lines):
             diff_file.write(line + '\n')
 
+# Вказуємо шлях до вхідних файлів та вихідних файлів
+file1_path = 'file1.txt'
+file2_path = 'file2.txt'
+same_path = 'same.txt'
+diff_path = 'diff.txt'
+
+# Викликаємо функцію порівняння файлів
+comparing(file1_path, file2_path, same_path, diff_path)
