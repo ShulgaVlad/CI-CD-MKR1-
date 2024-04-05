@@ -21,3 +21,16 @@ def create_test_files(tmp_path):
     return file1, file2, same, diff
 
 # Тест, який використовує фікстуру для створення тестових файлів і перевірки результатів порівняння
+def test_comparing(create_test_files):
+    file1, file2, same, diff = create_test_files
+    comparing(file1, file2, same, diff)
+
+    same_contents = same.read_text().strip().split('\n')
+    diff_contents = diff.read_text().strip().split('\n')
+
+    # Sort the contents before asserting
+    assert sorted(same_contents) == sorted(["line1 anyline cntrl", "line3 notline str"])
+    assert sorted(diff_contents) == sorted(["different line2", "diff line41"])
+
+# Виклик pytest для запуску тесту
+# pytest test_comparing.py
